@@ -11,6 +11,9 @@ const connectDb = require("./config/connectDb")
 // config dot env file
 dotenv.config({ path: './config.env' });
 
+// database call
+connectDb()
+
 // rest object
 const app = express();
 
@@ -31,9 +34,6 @@ app.get("*", function (req, res) {
 
 const PORT = 5000 || process.env.DATABASE;
 //listen server
-// database call
-connectDb().then(() => {
-    app.listen(PORT, () => {
-        console.log(`server is running on port ${PORT}`)
-    })
+app.listen(PORT, () => {
+    console.log(`server is running on port ${PORT}`)
 })
