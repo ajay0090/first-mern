@@ -44,13 +44,14 @@ router.post('/signin', async (req, res) => {
         if (userLogin) {
             const ismatch = await bcrypt.compare(password, userLogin.password);
 
+            console.log('Here, i am genrating token');
             const token = await userLogin.generateAuthToken();
+            console.log(token);
 
             res.cookie("jwtoken", token, {
                 expires: new Date(Date.now() + 25892000000),
                 httpOnly: true
             });
-            // console.log(token);
 
             if (!ismatch) {
                 return res.status(400).json("Invalid credential");
