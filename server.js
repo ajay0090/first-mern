@@ -6,18 +6,22 @@ const mongoose = require('mongoose')
 const path = require("path")
 const cookieParser = require('cookie-parser')
 const auth = require('./router/auth.js')
-
-// rest object
-const app = express();
+const connectDb = require("./config/connectDb")
 
 // config dot env file
 dotenv.config({ path: './config.env' });
 
+// database call
+connectDb();
+
+// rest object
+const app = express();
+
 // middlewares
-app.use(cors())
+app.use(morgan("dev"));
 app.use(express.json())
+// app.use(cors())
 app.use(cookieParser());
-app.use(morgan("dev"))
 
 //routes
 app.use(auth);
@@ -26,10 +30,9 @@ app.use(auth);
 const DB = process.env.DATABASE;
 const PORT = process.env.PORT || 5000;
 
-// database call
-mongoose.connect(DB, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => { console.log('connection successfull') })
-    .catch((error) => console.log(error.message));
+// mongoose.connect(DB, { useNewUrlParser: true, useUnifiedTopology: true })
+//     .then(() => { console.log('connection successfull') })
+//     .catch((error) => console.log(error.message));
 
 // static files
 app.use(express.static(path.join(__dirname, "./client/build")));
