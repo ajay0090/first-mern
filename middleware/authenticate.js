@@ -1,15 +1,15 @@
-import { verify } from 'jsonwebtoken';
-import { findOne } from '../models/userSchema.js';
-import { config } from 'dotenv';
-config({ path: './config.env' });
+const jwt = require('jsonwebtoken');
+const User = require('../models/userSchema.js');
+const dotenv = require('dotenv');
+dotenv.config({ path: './config.env' });
 
 
 const Authenticate = async (req, res, next) => {
     try {
         // console.log('Hi i am authenticate.js')
         const token = req.cookies.jwtoken;
-        const verifyToken = verify(token, process.env.SECRET_KEY);
-        const rootUser = await findOne({ _id: verifyToken._id, token: token });
+        const verifyToken = jwt.verify(token, process.env.SECRET_KEY);
+        const rootUser = await User.findOne({ _id: verifyToken._id, token: token });
 
         if (!rootUser) { throw new Error('User not found') }
 
@@ -23,4 +23,4 @@ const Authenticate = async (req, res, next) => {
     }
 }
 
-export default Authenticate;
+module.exports = Authenticate;
