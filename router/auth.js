@@ -5,9 +5,9 @@ const authenticate = require("../middleware/authenticate.js");
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.send(`Hi from the server auth!`)
-})
+// router.get('/', (req, res) => {
+//     res.send(`Hi from the server auth!`)
+// })
 
 router.post('/register', async (req, res) => {
     const { name, email, phone, password, cpassword } = req.body;
