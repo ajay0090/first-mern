@@ -29,6 +29,7 @@ app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "./client/build/index.html"));
 })
 
+const PORT = 5000 || process.env.DATABASE;
 //listen server
 // database call
 connectDb().then(() => {
