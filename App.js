@@ -24,10 +24,10 @@ mongoose.connect(DB, { useNewUrlParser: true, useUnifiedTopology: true })
 // }
 
 //static files
-app.use(express.static(path.join(__dirname, "../client/build")));
+app.use(express.static(path.join(__dirname, "./client/build")));
 
 app.get('*', function (req, res) {
-    res.sendFile(paht.join(__dirname, "../client/build/index.html"))
+    res.sendFile(paht.join(__dirname, "./client/build/index.html"))
 })
 
 app.listen(PORT, () => {
