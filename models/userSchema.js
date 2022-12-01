@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
-import bcrypt from "bcrypt";
-import dotenv from 'dotenv';
-import jsonwebtoken from 'jsonwebtoken';
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
+const dotenv = require('dotenv');
+const jsonwebtoken = require('jsonwebtoken');
 
 dotenv.config({ path: './config.env' });
 
@@ -90,4 +90,4 @@ userSchema.methods.sendMessage = async function (name, email, phone, message) {
 
 const User = mongoose.model('USER', userSchema);
 
-export default User;
+module.exports = User;
