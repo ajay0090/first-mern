@@ -5,7 +5,7 @@ const dotenv = require('dotenv')
 const path = require("path")
 const cookieParser = require('cookie-parser')
 const auth = require('./router/auth.js')
-const connectDb = require("./config/connectDb").default
+const connectDb = require("./config/connectDb")
 
 // config dot env file
 dotenv.config({ path: './config.env' });
