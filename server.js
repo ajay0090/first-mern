@@ -3,6 +3,7 @@ const cors = require("cors")
 const morgan = require("morgan")
 const dotenv = require('dotenv')
 const mongoose = require('mongoose')
+const path = require("path")
 const cookieParser = require('cookie-parser')
 const auth = require('./router/auth.js')
 
@@ -31,9 +32,9 @@ mongoose.connect(DB, { useNewUrlParser: true, useUnifiedTopology: true })
     .catch((error) => console.log(error.message));
 
 // static files
-app.use(express.static("./client/build"));
+app.use(express.static(path.join(__dirname, "./client/build")));
 app.get("*", function (req, res) {
-    res.sendFile("./client/build/index.html");
+    res.sendFile(path.join(__dirname, "./client/build/index.html"));
 })
 
 //listen server
