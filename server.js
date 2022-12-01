@@ -24,7 +24,7 @@ app.use(auth);
 
 // DATABASE AND PORT
 const DB = process.env.DATABASE;
-const PORT = 5000 || process.env.PORT;
+const PORT = process.env.PORT || 5000;
 
 // database call
 mongoose.connect(DB, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -39,5 +39,5 @@ app.get("*", function (req, res) {
 
 //listen server
 app.listen(PORT, () => {
-    console.log(`server is running on port ${PORT}`)
+    console.log(`server is running on port 5000`)
 })
