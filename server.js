@@ -12,7 +12,7 @@ const connectDb = require("./config/connectDb")
 dotenv.config({ path: './config.env' });
 
 // database call
-connectDb()
+connectDb();
 
 // rest object
 const app = express();
