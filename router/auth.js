@@ -1,5 +1,6 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
+const mongoose = require("mongoose")
 const User = require('../models/userSchema.js');
 const authenticate = require("../middleware/authenticate.js");
 
@@ -16,7 +17,7 @@ router.post('/register', async (req, res) => {
         return res.status(404).json('All field must be filled');
     }
     try {
-        const userExit = await User.findOne({ email: email });
+        const userExit = await mongoose.model('User').findOne({ email: email });
 
         if (userExit) {
             return res.status(422).json("Account already exit");
