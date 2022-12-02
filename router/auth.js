@@ -17,7 +17,7 @@ router.post('/register', async (req, res) => {
         return res.status(404).json('All field must be filled');
     }
     try {
-        const userExit = await mongoose.model('User').findOne({ email: email });
+        const userExit = await User.findOne({ email: email });
 
         if (userExit) {
             return res.status(422).json("Account already exit");
