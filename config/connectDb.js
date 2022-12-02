@@ -6,7 +6,6 @@ const connectDb = async () => {
             keepAlive: true,
             useNewUrlParser: true,
             useUnifiedTopology: true,
-            useFindAndModify: false,
         });
         console.log(`MongoDB Connected: Happy`);
     } catch (error) {
