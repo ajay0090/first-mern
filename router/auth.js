@@ -1,8 +1,8 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
-const mongoose = require("mongoose")
-const User = require('../models/userSchema.js');
-const authenticate = require("../middleware/authenticate.js");
+// const mongoose = require("mongoose")
+const User = require('../models/userSchema');//.js
+const authenticate = require("../middleware/authenticate");//.js
 
 const router = express.Router();
 

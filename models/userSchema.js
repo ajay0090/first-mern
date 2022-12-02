@@ -88,6 +88,6 @@ userSchema.methods.sendMessage = async function (name, email, phone, message) {
     }
 }
 
-const User = mongoose.model('USER', userSchema);
+const User = mongoose.model('users', userSchema);
 
 module.exports = User;
