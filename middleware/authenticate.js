@@ -5,9 +5,16 @@ dotenv.config({ path: './config.env' });
 
 
 const Authenticate = async (req, res, next) => {
+    // Get token from header
+    const token = req.cookies.jwtoken;
+
+    // Check if no token
+    if (!token) {
+        return res.status(401).json({ msg: "No token, authorization denied" });
+    }
+
+    // Verify token
     try {
-        // console.log('Hi i am authenticate.js')
-        const token = req.cookies.jwtoken;
         const verifyToken = jwt.verify(token, process.env.SECRET_KEY);
         const rootUser = await User.findOne({ _id: verifyToken._id, token: token });
 
@@ -18,8 +25,7 @@ const Authenticate = async (req, res, next) => {
         req.userId = rootUser._id;
         next();
     } catch (error) {
-        res.status(401).send("Unauthorized: No token provided")
-        console.log(error)
+        res.status(401).json({ msg: "Token is not valid" });
     }
 }
 

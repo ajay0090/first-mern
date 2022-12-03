@@ -1,10 +1,9 @@
 const express = require("express");
-const bcrypt = require("bcrypt");
-// const mongoose = require("mongoose")
+const router = express.Router();
 const User = require('../models/userSchema');//.js
 const authenticate = require("../middleware/authenticate");//.js
+const bcrypt = require("bcrypt");
 
-const router = express.Router();
 
 // router.get('/', (req, res) => {
 //     res.send(`Hi from the server auth!`)
